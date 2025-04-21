@@ -221,3 +221,4 @@ dependencies:
       - voluptuous==0.13.1
       - yarl==1.9.2
       - zc-lockfile==3.0.post1
+      - mypy
