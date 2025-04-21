@@ -2,7 +2,6 @@ Here’s the updated `README.md` tailored for your **uv-based Data Science Proje
 
 ---
 
-```markdown
 # 🧠 Data Science Project Template (uv version)
 
 This template is designed for fast, reproducible, and maintainable personal data science projects using [`uv`](https://github.com/astral-sh/uv) for dependency management.
