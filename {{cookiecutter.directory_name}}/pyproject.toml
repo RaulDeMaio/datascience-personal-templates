@@ -1,0 +1,27 @@
+[project]
+name = "{{cookiecutter.project_name.lower().replace(' ', '_')}}"
+version = "0.1.0"
+description = "Data science template built with uv"
+authors = ["{{cookiecutter.author_name}}"]
+dependencies = [
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "interrogate",
+    "nbqa",
+    "pdoc",
+    "pytest",
+    "pre-commit",
+    "click",
+    "ipykernel",
+    "pandas",
+    "numpy",
+    "jupyter",
+    "rich",
+    "loguru"
+]
+
+[tool.uv]
+# Optional: pin python version
+python = ">=3.9"
