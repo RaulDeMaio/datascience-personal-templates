@@ -25,7 +25,6 @@ For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.ke
 
 ### 📋 To Do
 
-- Automate some setup steps with CLI
 - Add GitHub Action for CI
 - Setup centralized logging and error tracking
 

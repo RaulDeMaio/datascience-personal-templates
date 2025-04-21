@@ -1,0 +1,70 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.log
+
+# ========================
+# Jupyter Notebooks
+# ========================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# ========================
+# Environment & Packages
+# ========================
+.env
+.venv/
+venv/
+env/
+conda-env/
+*.env
+*.yaml.lock
+Pipfile.lock
+poetry.lock
+
+# ========================
+# Logs & Outputs
+# ========================
+logs/
+*.log
+
+# ========================
+# DVC & Versioning (if re-added)
+# ========================
+.dvc/
+.dvcignore
+
+# ========================
+# Data & Intermediate Files
+# ========================
+data/01_raw/
+data/02_primary/
+data/03_feature/
+data/04_model_input/
+data/05_model_output/
+data/06_reporting/
+!data/**/.gitkeep
+
+# ========================
+# Documentation
+# ========================
+docs/*.html
+docs/*.pdf
+docs/.ipynb_checkpoints
+
+# ========================
+# VSCode & IDE
+# ========================
+.vscode/
+.idea/
+*.swp
+
+# ========================
+# OS-specific
+# ========================
+.DS_Store
+Thumbs.db
