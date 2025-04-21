@@ -27,3 +27,7 @@ clean:
 
 test:
 	pytest tests/
+
+docs:
+	pdoc src --html --output-dir docs
+
