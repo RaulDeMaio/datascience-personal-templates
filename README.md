@@ -2,7 +2,6 @@ Here’s the updated `README.md` reflecting all the recent improvements you've a
 
 ---
 
-```markdown
 # 🧠 Data Science Project Template
 
 This template was built after reading [this excellent article by khuyetran1401](https://towardsdatascience.com/how-to-structure-an-ml-project-for-reproducibility-and-maintainability-54d5e53b4c82?sk=c3d05ae5b8ccc95822618d0dacfad8a4).  
