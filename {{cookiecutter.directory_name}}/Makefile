@@ -24,3 +24,12 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 	rm -rf .pytest_cache
+
+test:
+	pytest tests/
+
+docs:
+	pdoc src --html --output-dir docs
+
+cli:
+	python scripts/setup_cli.py

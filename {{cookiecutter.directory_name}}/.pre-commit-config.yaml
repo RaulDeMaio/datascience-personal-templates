@@ -16,3 +16,19 @@ repos:
     hooks:
     - id: interrogate
       args: [-vv, -i, --fail-under=80]
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+    - id: mypy
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-added-large-files
+-   repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.5.3
+    hooks:
+    - id: nbqa-flake8
+    - id: nbqa-black
+    - id: nbqa-mypy
