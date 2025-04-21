@@ -63,6 +63,8 @@ For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.ke
 ├── models/                      # Saved models and config
 ├── notebooks/                   # Jupyter notebooks (experimental zone)
 │   └── README.md                # Notebook structure and usage guide
+├── scripts/                     # Scripts folder
+│   └── setup_cli.py             # Script to setup CLI
 ├── src/                         # Source code for data pipeline, modeling, etc.
 │   └── main.py
 ├── tests/                       # Unit tests
@@ -108,6 +110,34 @@ make test
 ```bash
 make docs
 ```
+
+### ⚡ Automate Setup via CLI
+
+You can automate environment creation, setup, testing, and docs generation using the built-in CLI.
+
+Example:
+
+```bash
+python scripts/setup_cli.py all
+```
+
+Or use individual steps:
+
+```bash
+python scripts/setup_cli.py create-env --env-name=my_env
+python scripts/setup_cli.py activate --env-name=my_env
+python scripts/setup_cli.py test
+python scripts/setup_cli.py docs
+```
+
+You can also run:
+
+```bash
+make cli
+```
+
+to open the CLI menu directly.
+
 
 ---
 

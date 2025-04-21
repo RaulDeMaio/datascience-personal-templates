@@ -31,3 +31,5 @@ test:
 docs:
 	pdoc src --html --output-dir docs
 
+cli:
+	python scripts/setup_cli.py
