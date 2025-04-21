@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}  # Important for conda compatibility
+
+    steps:
+    - name: 🧾 Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: 🐍 Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-activate-base: false
+        environment-file: config/environment.yml
+        activate-environment: {{cookiecutter.environment_name}}
+        python-version: 3.11
+        miniforge-variant: Mambaforge  # Optional: faster environment creation
+
+    - name: 🔍 Run Pre-commit
+      run: |
+        conda activate {{cookiecutter.environment_name}}
+        pre-commit run --all-files
+
+    - name: 🧪 Run Tests
+      run: |
+        conda activate {{cookiecutter.environment_name}}
+        pytest tests/

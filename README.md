@@ -23,11 +23,6 @@ For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.ke
 - Auto-lint notebooks using `nbQA`
 - Generate HTML documentation with `pdoc`
 
-### 📋 To Do
-
-- Add GitHub Action for CI
-- Setup centralized logging and error tracking
-
 ---
 
 ## 🧰 Tools Used
