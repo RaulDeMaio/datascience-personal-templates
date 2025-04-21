@@ -3,48 +3,40 @@ import click
 
 @click.group()
 def cli():
-    """CLI tool to setup the Data Science Project Template"""
+    """CLI tool for setting up and managing the Data Science Project Template using uv."""
     pass
 
 @cli.command()
-@click.option('--env-name', prompt='Conda environment name', help='Name of the conda environment to create')
-def create_env(env_name):
-    """Create the conda environment from config/environment.yml"""
-    click.echo(f"📦 Creating conda environment: {env_name}")
-    subprocess.run(f"conda env create -f config/environment.yml -n {env_name}", shell=True, check=True)
+def create_env():
+    """Create a new virtual environment using uv"""
+    click.echo("📦 Creating virtual environment with uv...")
+    subprocess.run("uv venv", shell=True, check=True)
 
 @cli.command()
-@click.option('--env-name', prompt='Conda environment name', help='Name of the conda environment to activate')
-def activate(env_name):
-    """Activate the environment and run make setup"""
-    click.echo(f"⚙️ Running project setup for env: {env_name}")
-    subprocess.run(f"conda activate {env_name} && make setup", shell=True, executable="/bin/bash")
-
-@cli.command()
-def install_precommit():
-    """Manually installs pre-commit hooks"""
-    click.echo("🔧 Installing pre-commit...")
-    subprocess.run("pre-commit install", shell=True)
+def install():
+    """Install project dependencies using uv"""
+    click.echo("📚 Installing project dependencies...")
+    subprocess.run("uv pip install -e .", shell=True, check=True)
+    subprocess.run("pre-commit install", shell=True, check=True)
 
 @cli.command()
 def test():
     """Run unit tests using pytest"""
     click.echo("🧪 Running tests...")
-    subprocess.run("make test", shell=True)
+    subprocess.run("pytest tests/", shell=True, check=True)
 
 @cli.command()
 def docs():
     """Generate documentation using pdoc"""
-    click.echo("📚 Generating documentation...")
-    subprocess.run("make docs", shell=True)
+    click.echo("📖 Generating documentation...")
+    subprocess.run("make docs", shell=True, check=True)
 
 @cli.command()
-@click.option('--env-name', prompt='Conda environment name', help='Name of the conda environment to use')
-def all(env_name):
-    """Run all setup steps in order"""
-    create_env.invoke(click.Context(create_env), env_name=env_name)
-    activate.invoke(click.Context(activate), env_name=env_name)
-    install_precommit.invoke(click.Context(install_precommit))
+def all():
+    """Run all setup steps in order: create env, install deps, pre-commit, test, docs"""
+    click.echo("🚀 Running full setup with uv...")
+    create_env.invoke(click.Context(create_env))
+    install.invoke(click.Context(install))
     test.invoke(click.Context(test))
     docs.invoke(click.Context(docs))
 
