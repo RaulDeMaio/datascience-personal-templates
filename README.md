@@ -167,7 +167,6 @@ Use:
 ```bash
 make docs
 ```
-
 Docs will be saved to the `docs/` folder using [`pdoc`](https://pdoc.dev).
 
 ---
@@ -190,3 +189,5 @@ You can find the config under `.github/workflows/ci.yml`.
 - [uv documentation](https://github.com/astral-sh/uv)
 
 ---
+=======
+Let me know if you want me to write the updated `Makefile`, `.pre-commit-config.yaml`, or help generate badges and shields for the top of the README!
