@@ -1,26 +1,26 @@
-Here’s the updated `README.md` reflecting all the recent improvements you've applied, including removal of DVC and Hydra, added testing, enriched pre-commit setup with `mypy` and `nbQA`, improved docs and developer UX, and notebook management guidelines.
+Here’s the updated `README.md` tailored for your **uv-based Data Science Project Template**, replacing all Conda references with `uv`, and fully aligned with the updated project structure, CLI, and GitHub Actions CI.
 
 ---
 
-# 🧠 Data Science Project Template
+# 🧠 Data Science Project Template (uv version)
 
-This template was built after reading [this excellent article by khuyetran1401](https://towardsdatascience.com/how-to-structure-an-ml-project-for-reproducibility-and-maintainability-54d5e53b4c82?sk=c3d05ae5b8ccc95822618d0dacfad8a4).  
-Rather than forking, I’ve rebuilt it myself to understand each component. The goal is **simplicity, reproducibility, and maintainability** for personal and experimental data science projects.
+This template is designed for fast, reproducible, and maintainable personal data science projects using [`uv`](https://github.com/astral-sh/uv) for dependency management.
 
-For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.kedro.org/en/stable/) are still preferable.
+Inspired by [khuyetran1401's article](https://towardsdatascience.com/how-to-structure-an-ml-project-for-reproducibility-and-maintainability-54d5e53b4c82?sk=c3d05ae5b8ccc95822618d0dacfad8a4), this setup is intended to stay lightweight and clean, while still enforcing quality practices.
+
+> For production-grade orchestration, consider [Kedro](https://docs.kedro.org/en/stable/).
 
 ---
 
-## 🚀 Features and Roadmap
+## 🚀 Features
 
-### ✅ Implemented
-
-- Automatically build repository structure
-- Create and build Conda environment
-- Enforce static typing and clean code with pre-commit
-- Run unit tests with `pytest`
-- Auto-lint notebooks using `nbQA`
-- Generate HTML documentation with `pdoc`
+- Build project structure instantly with Cookiecutter
+- Manage environments and dependencies with [`uv`](https://github.com/astral-sh/uv)
+- Pre-commit checks for formatting, linting, typing, notebook quality
+- Auto-generate docs using `pdoc`
+- Run unit tests via `pytest`
+- Logging setup for both scripts and notebooks
+- Built-in CLI for full automation
 
 ---
 
@@ -28,14 +28,15 @@ For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.ke
 
 | Tool           | Purpose                                                |
 |----------------|--------------------------------------------------------|
-| [Conda](https://docs.conda.io/) | Environment management                    |
-| [pre-commit](https://pre-commit.com/) | Code quality automation                |
-| [pytest](https://docs.pytest.org/) | Unit testing framework                   |
-| [mypy](http://mypy-lang.org/) | Static type checking                      |
-| [black](https://black.readthedocs.io/en/stable/) | Code formatting                    |
-| [flake8](http://flake8.pycqa.org/) | Linting                                |
-| [nbQA](https://nbqa.readthedocs.io/) | Code quality checks on Jupyter Notebooks |
-| [pdoc](https://pdoc.dev/) | Automatic documentation generator         |
+| [uv](https://github.com/astral-sh/uv) | Fast dependency management & venv |
+| [pre-commit](https://pre-commit.com/) | Code quality automation |
+| [pytest](https://docs.pytest.org/) | Unit testing framework |
+| [mypy](http://mypy-lang.org/) | Static type checking |
+| [black](https://black.readthedocs.io/en/stable/) | Code formatting |
+| [flake8](http://flake8.pycqa.org/) | Linting |
+| [nbQA](https://nbqa.readthedocs.io/) | Notebook linting |
+| [pdoc](https://pdoc.dev/) | Documentation generator |
+| [click](https://click.palletsprojects.com/) | CLI interface for setup |
 
 ---
 
@@ -43,100 +44,93 @@ For industrial or enterprise-grade pipelines, tools like [Kedro](https://docs.ke
 
 ```bash
 .
-├── config/                      # Conda and pipeline configuration
-│   └── environment.yml          # Conda environment definition
-├── data/                        # Data folders (local, untracked)
-│   ├── 01_raw/
-│   ├── 02_primary/
-│   ├── 03_feature/
+├── config/                    # Optional config files
+├── data/                      # Data folders (not tracked)
+│   ├── 01_raw/                # Raw immutable data
+│   ├── 02_primary/            # Domain-level cleaned data
+│   ├── 03_feature/            # Features for modeling
 │   ├── 04_model_input/
 │   ├── 05_model_output/
 │   └── 06_reporting/
-├── docs/                        # HTML and markdown documentation
-├── models/                      # Saved models and config
-├── notebooks/                   # Jupyter notebooks (experimental zone)
-│   └── README.md                # Notebook structure and usage guide
-├── scripts/                     # Scripts folder
-│   └── setup_cli.py             # Script to setup CLI
-├── src/                         # Source code for data pipeline, modeling, etc.
+├── docs/                      # Auto-generated documentation
+├── models/                    # Saved models
+├── notebooks/                 # Jupyter notebooks
+│   ├── 00_example_notebook.ipynb
+│   └── README.md
+├── scripts/                   # CLI and utility scripts
+│   └── setup_cli.py
+├── src/                       # Core source code
+│   ├── logging_utils.py
 │   └── main.py
-├── tests/                       # Unit tests
+├── tests/                     # Unit tests
 │   └── test_main.py
-├── .pre-commit-config.yaml      # Hooks for linting, formatting, typing
-├── Makefile                     # Automation: setup, lint, test, docs
+├── .github/workflows/ci.yml  # GitHub Actions CI workflow
+├── .gitignore
+├── .pre-commit-config.yaml
+├── Makefile
+├── pyproject.toml
 └── README.md
 ```
 
 ---
 
-## 🛠 How to Use This Template
+## ⚙️ Quick Start
 
-### 📦 Install Cookiecutter
+### 🧱 1. Generate a Project
 
 ```bash
 pip install cookiecutter
-```
-
-### 🧪 Generate New Project
-
-```bash
 cookiecutter https://github.com/radema/datascience-personal-templates
 ```
 
-### ⚙️ Setup Your Environment
+### 🛠 2. Setup the Project with uv
 
 ```bash
-cd {{cookiecutter.repository-name}}
-conda env create -f config/environment.yml
-conda activate {{cookiecutter.environment_name}}
-make setup
+uv venv
+uv pip install -e .
+make setup  # runs pre-commit install
 ```
 
-### 🧪 Run Tests
-
-```bash
-make test
-```
-
-### 📚 Generate Documentation
-
-```bash
-make docs
-```
-
-### ⚡ Automate Setup via CLI
-
-You can automate environment creation, setup, testing, and docs generation using the built-in CLI.
-
-Example:
+Or use the full automation CLI:
 
 ```bash
 python scripts/setup_cli.py all
 ```
 
-Or use individual steps:
+---
+
+## 🔧 Developer CLI
+
+You can automate common steps using:
 
 ```bash
-python scripts/setup_cli.py create-env --env-name=my_env
-python scripts/setup_cli.py activate --env-name=my_env
+python scripts/setup_cli.py create-env
+python scripts/setup_cli.py install
 python scripts/setup_cli.py test
 python scripts/setup_cli.py docs
 ```
 
-You can also run:
+---
+
+## 🧪 Testing
+
+Run tests:
 
 ```bash
-make cli
+make test
 ```
 
-to open the CLI menu directly.
+Or from the CLI:
 
+```bash
+python scripts/setup_cli.py test
+```
 
 ---
 
-## 📓 Notebook Guidelines
+## 📓 Notebooks
 
-Notebooks are stored in `notebooks/` and follow a numeric prefix convention:
+Located in `notebooks/`, using a numbered convention:
 
 ```
 01_data_exploration.ipynb
@@ -144,17 +138,56 @@ Notebooks are stored in `notebooks/` and follow a numeric prefix convention:
 03_model_training.ipynb
 ```
 
-Code quality is enforced in notebooks using `nbQA` integrated with pre-commit (`black`, `flake8`, `mypy`).
+Best practices:
+- Keep modular and clean
+- Restart + clear outputs before commits
+- Auto-checked with `nbQA` in pre-commit
 
 ---
 
-## 📖 Resources
+## 🧼 Pre-commit Hooks
+
+Includes:
+- `black`, `flake8`, `isort`, `mypy`, `interrogate`
+- `nbQA` for notebook linting
+- Whitespace, large file checks
+
+Run manually with:
+
+```bash
+pre-commit run --all-files
+```
+
+---
+
+## 📚 Generate Docs
+
+Use:
+
+```bash
+make docs
+```
+Docs will be saved to the `docs/` folder using [`pdoc`](https://pdoc.dev).
+
+---
+
+## 🔁 Continuous Integration
+
+This project includes GitHub Actions CI:
+- Installs environment with `uv`
+- Runs pre-commit hooks
+- Runs `pytest`
+
+You can find the config under `.github/workflows/ci.yml`.
+
+---
+
+## 📖 References
 
 - [khuyentran1401/data-science-template](https://github.com/khuyentran1401/data-science-template/blob/dvc-poetry/README.md)
 - [Kedro starters](https://github.com/kedro-org/kedro-starters)
+- [uv documentation](https://github.com/astral-sh/uv)
 
 ---
-
-```
-
+=======
 Let me know if you want me to write the updated `Makefile`, `.pre-commit-config.yaml`, or help generate badges and shields for the top of the README!
