@@ -180,6 +180,11 @@ This project includes GitHub Actions CI:
 
 You can find the config under `.github/workflows/ci.yml`.
 
+## To Do:
+- rename folder data/06_**
+- Some tests
+- Fix action CI
+
 ---
 
 ## 📖 References
