@@ -2,7 +2,11 @@
 
 setup:
 	uv venv
-	uv pip install -r requirements.txt
+	@echo "Initializing Git..."
+	git init
+	git add .
+	git commit -m "Setup project"
+	#uv pip install -r requirements.txt
 	uv pip install -e .  # if you want to install your package in editable mode
 	pre-commit install
 
