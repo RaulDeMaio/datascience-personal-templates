@@ -2,7 +2,9 @@
 name = "{{cookiecutter.project_name.lower().replace(' ', '_')}}"
 version = "0.1.0"
 description = "Data science template built with uv"
-authors = ["{{cookiecutter.author_name}}"]
+authors = [{
+    name = "{{cookiecutter.author_name}}"
+    }]
 dependencies = [
     "black",
     "flake8",
