@@ -87,7 +87,6 @@ cookiecutter https://github.com/radema/datascience-personal-templates -c uv-supp
 
 ```bash
 uv venv
-uv pip install -e .
 make setup  # runs pre-commit install
 ```
 
