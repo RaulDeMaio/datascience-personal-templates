@@ -23,7 +23,8 @@ dependencies = [
     "rich",
     "loguru",
     "setuptools",
-    "databricks-connect>=16.3.2",
+    "databricks-connect>=13.3.0",
+    "pyspark>=3.5.0"
 ]
 
 [tool.uv]
