@@ -80,7 +80,7 @@ Inspired by [khuyetran1401's article](https://towardsdatascience.com/how-to-stru
 
 ```bash
 pip install cookiecutter
-cookiecutter https://github.com/radema/datascience-personal-templates
+cookiecutter https://github.com/radema/datascience-personal-templates -c uv-support
 ```
 
 ### 🛠 2. Setup the Project with uv
