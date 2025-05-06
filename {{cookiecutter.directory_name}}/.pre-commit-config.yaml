@@ -16,6 +16,8 @@ repos:
     hooks:
     - id: interrogate
       args: [-vv, -i, --fail-under=80]
+      additional_dependencies:
+        - setuptools
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.3.0
     hooks:
@@ -30,5 +32,14 @@ repos:
     rev: 1.5.3
     hooks:
     - id: nbqa-flake8
+      additional_dependencies:
+        - flake8
+        - setuptools
     - id: nbqa-black
+      additional_dependencies:
+        - black
+        - setuptools
     - id: nbqa-mypy
+      additional_dependencies:
+        - mypy
+        - setuptools
