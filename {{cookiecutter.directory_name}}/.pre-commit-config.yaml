@@ -12,7 +12,7 @@ repos:
     hooks:
     -   id: isort
 -   repo: https://github.com/econchick/interrogate
-    rev: 1.5.0  
+    rev: 1.5.0
     hooks:
     - id: interrogate
       args: [-vv, -i, --fail-under=80]
@@ -22,6 +22,9 @@ repos:
     rev: v1.3.0
     hooks:
     - id: mypy
+      args: 
+        - src/
+        - --explicit-package-bases
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -35,10 +38,8 @@ repos:
       additional_dependencies:
         - flake8
         - setuptools
-    - id: nbqa-black
-      additional_dependencies:
-        - black
-        - setuptools
+      args:
+        - --extend-ignore=E402
     - id: nbqa-mypy
       additional_dependencies:
         - mypy
